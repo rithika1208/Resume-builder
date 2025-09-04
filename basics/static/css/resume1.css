@@ -1,0 +1,119 @@
+.resume-container {
+    width: 90%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;            
+    flex-direction: row;
+    align-items: stretch;     
+    box-sizing: border-box;
+}
+.left-section p,
+.left-section li {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;  
+}
+.right-section p,
+.right-section li {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;  
+}
+
+.left-section {
+    flex: 0 0 32%;            
+    background: #b2defb;
+    color: #0c0c0c;
+    padding: 20px;
+    min-height: 100vh;       
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.left-section h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #0a0a0a;
+    white-space: nowrap;      
+}
+
+.left-section h3 {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #080808;
+}
+
+.left-section p,
+.left-section li {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.right-section {
+    flex: 1;                  
+    padding: 20px;
+    box-sizing: border-box;
+    vertical-align: top;
+    overflow-wrap: break-word;   
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.right-section h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.right-section p,
+.right-section li {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.right-section ul {
+    margin-left: 18px;
+    font-size: 14px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #bdc3c7;
+    margin: 15px 0;
+}
+
+.no-print {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-print .btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    background: #2c3e50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.no-print .btn:hover {
+    background: #34495e;
+}
+
+@media print {
+    .no-print { display: none !important; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

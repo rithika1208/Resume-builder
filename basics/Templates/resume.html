@@ -1,0 +1,208 @@
+{% load static %}
+<html>
+<head>
+  <title>Your Resume</title>
+  <style>
+/* Force hide buttons in PDF/Print */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  width: 100%;
+  text-align: justify;
+  box-sizing: border-box;
+}
+
+/* Main container */
+.container-fluid {
+  width: 94%;    
+  margin: auto;
+  page-break-inside: avoid;
+}
+
+/* Name & Role */
+h1.name {
+  font-size: 20pt;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #004080;
+}
+
+h2.role {
+  font-size: 13pt;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #0066cc;
+}
+
+.contact {
+  text-align: center;
+  font-size: 10pt;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
+}
+
+/* Section headings */
+.section-title {
+  font-size: 11pt;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  background: #e6f0ff;
+  padding: 3px;
+  border-left: 4px solid #004080;
+  page-break-inside: avoid;
+}
+
+/* Paragraph */
+p {
+  margin: 2px 0;
+  line-height: 1.2;
+}
+
+/* Lists */
+ul {
+  margin: 2px 0 6px 16px;
+}
+
+li {
+  margin-bottom: 2px;
+}
+
+/* Buttons (hidden in PDF) */
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+
+.no-print {
+    margin-top: 20px;
+    text-align: center;
+}
+/* ✅ Page setup */
+@page {
+  size: A4;
+  margin: 8mm;   /* tighter margins */
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: scale(0.95); 
+    transform-origin: top left;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="pdf-container">
+  <div class="container-fluid">
+    <!-- NAME & CONTACT -->
+    <h1 class="name">{{ first_name }} {{ last_name }}</h1>
+    <h2 class="role">{{ job_title }}</h2>
+    <p class="contact">
+      {{ email }} | {{ phone }} | {{ address }}
+    </p>
+    <hr>
+
+    <!-- SUMMARY -->
+    <h3 class="section-title">Summary</h3>
+    <p>{{ summary }}</p>
+    <hr>
+
+    <!-- SKILLS -->
+    <h3 class="section-title">Skills</h3>
+    <ul>
+      {% for skill in skills %}
+        <li>{{ skill }}</li>
+      {% empty %}
+        <li>No skills provided</li>
+      {% endfor %}
+    </ul>
+
+    <!-- SOFT SKILLS -->
+    <h3 class="section-title">Soft Skills</h3>
+    <ul>
+      {% for softskill in softskills %}
+        <li>{{ softskill }}</li>
+      {% empty %}
+        <li>No soft skills provided</li>
+      {% endfor %}
+    </ul>
+
+    <!-- LANGUAGES -->
+    <h3 class="section-title">Languages</h3>
+    <ul>
+      {% for language in language %}
+        <li>{{ language }}</li>
+      {% empty %}
+        <li>No language provided</li>
+      {% endfor %}
+    </ul>
+
+    <!-- EXPERIENCE -->
+    <h3 class="section-title">Professional Experience</h3>
+    <div class="experience">
+      <h4>{{ company_one }}</h4>
+      <p><b>{{ role_one }}</b></p>
+      <ul>
+        {% for sentence in job_one %}
+          {% if sentence.strip %}
+            <li>{{ sentence }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+<hr>
+      <h4>{{ company_two }}</h4>
+      <p><b>{{ role_two }}</b></p>
+      <ul>
+        {% for sentence in job_two %}
+          {% if sentence.strip %}
+            <li>{{ sentence }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- EDUCATION -->
+    <h3 class="section-title">Education</h3>
+    <p>{{ education }} ({{ start_year }} - {{ end_year }})</p>
+    <p>CGPA: {{ cgpa }}</p>
+    <hr>
+
+  </div>
+  </div>
+
+  <!-- Buttons (Not in PDF) -->
+   {% if not for_pdf %}
+  <div class="no-print" style="margin-top:20px;">
+    <a href="{% url 'form' %}" class="btn">⬅ Back to Form</a>
+    <form action="{% url 'download_pdf' %}" method="post" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn">⬇ Download PDF</button>
+    </form>
+  </div>
+  {% endif %}
+</body>
+</html>

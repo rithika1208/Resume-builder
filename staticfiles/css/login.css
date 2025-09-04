@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+
+}
+.form {
+    width: 300px;
+    padding: 25px;
+    background: #fff;
+    border: 3px solid #f756b4;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+
+}

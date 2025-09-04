@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  color: #000;
+}
+
+.container-fluid {
+    width: 90%;
+    margin: auto;
+}
+
+/* Name & Role */
+h1.name {
+    font-size: 22pt;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #004080; /* Dark blue */
+}
+
+h2.role {
+    font-size: 14pt;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #0066cc;
+}
+
+.contact {
+    text-align: center;
+    font-size: 10pt;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+
+/* Section headings */
+.section-title {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    background: #e6f0ff; /* Light blue highlight */
+    padding: 3px;
+    border-left: 4px solid #004080;
+}
+
+/* Paragraph */
+p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+/* Lists */
+ul {
+    margin: 5px 0 10px 20px;
+}
+
+li {
+    margin-bottom: 3px;
+}

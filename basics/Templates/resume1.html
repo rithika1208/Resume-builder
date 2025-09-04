@@ -1,0 +1,99 @@
+{% load static %}
+<html>
+  <head>
+    <title>Your Resume</title>
+    <link rel="stylesheet" href="{% static 'css/resume1.css' %}">
+  </head>
+<body>
+<div class="resume-container">
+  <table class="resume-table">
+    <tr>
+      <!-- LEFT SECTION -->
+      <td class="left-section">
+        <h2 class="name">{{ first_name }} {{ last_name }}</h2>
+        <hr>
+        <h3>Contact</h3>
+        <p>{{ email }}</p>
+        <p>{{ phone }}</p>
+        <p>{{ address }}</p>
+        <hr>
+
+        <h3>Education</h3>
+        <p>{{ education }} → {{ start_year }} - {{ end_year }}</p>
+        <p>CGPA: {{ cgpa }}</p>
+        <hr>
+
+        <h3>Skills</h3>
+        <ul>
+          {% for skill in skills %}
+            <li>{{ skill }}</li>
+          {% empty %}
+            <li>No skills provided</li>
+          {% endfor %}
+        </ul>
+        <hr>
+
+        <h3>Soft Skills</h3>
+        <ul>
+          {% for softskill in softskills %}
+            <li>{{ softskill }}</li>
+          {% empty %}
+            <li>No soft skills provided</li>
+          {% endfor %}
+        </ul>
+        <hr>
+
+        <h3>Languages</h3>
+        <ul>
+          {% for lang in language %}
+            <li>{{ lang }}</li>
+          {% empty %}
+            <li>No language provided</li>
+          {% endfor %}
+        </ul>
+      </td>
+
+      <!-- RIGHT SECTION -->
+      <td class="right-section">
+        <h3>Summary</h3>
+        <p>{{ summary }}</p>
+        <hr>
+
+        <h3>Experience</h3>
+
+        <h4>{{ company_one }}</h4>
+        <p><b>{{ role_one }}</b></p>
+        <ul>
+          {% for sentence in job_one %}
+            {% if sentence.strip %}
+              <li>{{ sentence }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <hr>
+        <h4>{{ company_two }}</h4>
+        <p><b>{{ role_two }}</b></p>
+        <ul>
+          {% for sentence in job_two %}
+            {% if sentence.strip %}
+              <li>{{ sentence }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Buttons (hidden in PDF) -->
+{% if not for_pdf %}
+<div class="no-print actions">
+  <a href="{% url 'form1' %}" class="btn">⬅ Back to Form</a>
+  <form action="{% url 'download_pdf1' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn">⬇ Download PDF</button>
+  </form>
+</div>
+{% endif %}
+</body>
+</html>
