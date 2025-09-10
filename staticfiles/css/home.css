@@ -1,0 +1,40 @@
+.navbar {
+  background: rgba(36, 1, 30, 0.7);
+}
+.navbar a {
+    color: white !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.navbar a:hover {
+  color: #ffc107 !important;
+}
+.hero {
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+   color: white;
+   background-color: rgba(82, 15, 55, 0.5);
+}
+.hero h1 {
+   font-size: 3rem;
+   font-weight: bold;
+}
+.features {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+.feature-card {
+  transition: transform 0.3s;
+}
+.feature-card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.about, .contact {
+   padding: 60px 0;
+   background: white;
+}
