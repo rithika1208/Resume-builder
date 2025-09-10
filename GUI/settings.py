@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-!_^b4he2qm4r!l25z@7dg1m2hn!^22)!yt_3ee7j*)i)-5pj)=
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['resume-builder-1-k4zb.onrender.com','onrender.com']
+ALLOWED_HOSTS = ['resume-builder-1-k4zb.onrender.com']
 
 
 
