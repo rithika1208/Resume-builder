@@ -143,7 +143,7 @@ def home(request):
             user_resume = Resume.objects.get(user=request.user)
         except Resume.DoesNotExist:
             user_resume = None
-    return render(request, 'basics/home.html', {'resume_exists': user_resume})
+    return render(request, 'home.html', {'resume_exists': user_resume})
 
 def template(request):
     return render(request, 'template.html',)

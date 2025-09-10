@@ -69,7 +69,7 @@ ROOT_URLCONF = "GUI.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [ BASE_DIR /'basics'/'templates'],
+        "DIRS": [ BASE_DIR /'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
