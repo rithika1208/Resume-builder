@@ -17,6 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -27,7 +28,7 @@ SECRET_KEY = "django-insecure-!_^b4he2qm4r!l25z@7dg1m2hn!^22)!yt_3ee7j*)i)-5pj)=
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['10.78.230.171', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['onrender.com']
 
 
 
@@ -51,6 +52,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.db"  
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  
