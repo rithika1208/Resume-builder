@@ -130,6 +130,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "basics","static")]
 
+PDFKIT_CONFIG = pdfkit.configuration(
+    wkhtmltopdf='/usr/bin/wkhtmltopdf'
+)
+
 # Extra places for Django to look for static files (optional)
 
 MEDIA_URL = '/media/'

@@ -11,6 +11,7 @@ from .models import Resume
 from django.contrib.auth.decorators import login_required
 import os
 import pdfkit
+import platform
 from django.conf import settings
 from django.templatetags.static import static
 from django.contrib.staticfiles import finders
@@ -408,11 +409,11 @@ def download_pdf1(request):
     }
 
     html = render_to_string("resume1.html", context)
-
-    config = pdfkit.configuration(
+    if platform.system() == "Windows":
         wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
-    )
-
+    else:
+        wkhtml_path = "/usr/bin/wkhtmltopdf"
+        config = pdfkit.configuration(wkhtmltopdf,wkhtml_path)
 
     css_path = finders.find('css/resume1.css')
     print("CSS exists?", os.path.exists(css_path)) 
