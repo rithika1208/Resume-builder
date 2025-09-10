@@ -412,8 +412,8 @@ def download_pdf1(request):
     if platform.system() == "Windows":
         wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
     else:
-        wkhtml_path = "/usr/bin/wkhtmltopdf"
-        config = pdfkit.configuration(wkhtmltopdf,wkhtml_path)
+        wkhtmltopdf_path = "/usr/bin/wkhtmltopdf"
+        config = pdfkit.configuration(wkhtmltopdf,wkhtmltopdf_path)
 
     css_path = finders.find('css/resume1.css')
     print("CSS exists?", os.path.exists(css_path)) 

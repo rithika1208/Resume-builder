@@ -130,9 +130,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "basics","static")]
 
-PDFKIT_CONFIG = pdfkit.configuration(
-    wkhtmltopdf='/usr/bin/wkhtmltopdf'
-)
+WKHTMLTOPDF_PATH = "/usr/bin/wkhtmltopdf"  # for Render (Linux)
+if os.name == "nt":  # Windows
+    WKHTMLTOPDF_PATH = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
 
 # Extra places for Django to look for static files (optional)
 
