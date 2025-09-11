@@ -356,7 +356,7 @@ def download_pdf(request):
     path_wkhtmltopdf = shutil.which("wkhtmltopdf")
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     
-    css_path = os.path.join(settings.STATIC_ROOT, "css", "resume.css")
+    css_path = finders.find("css/resume.css")
     pdf = pdfkit.from_string(
         html,
         False,
