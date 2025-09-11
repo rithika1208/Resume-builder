@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet", href="{% static 'css/form1.css' %}"> 
+  <title>{% if edit_mode %}Edit{% else %}Create{% endif %}Resume</title>
+  </head>
+  <style>
+  body {
+      background-image:url("{% static 'images/form2.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  </style>
+    <center><h1>{% if edit_mode %}Edit{% else %}Create{% endif %} Resume</h1></center>
+  <div class="container-fluid">
+  <form method="POST" action="{% url 'resume1' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="input-group " id="first_name"><br>
+  <span class="input-group-text" id="first_name">First and last name</span>
+  <input type="text" id="first_name" name="first_name" value="{{ first_name|default:'' }}"aria-label="First name" class="form-control ">
+  <input type="text" id="last_name" name="last_name" value="{{ last_name|default:'' }}"aria-label="Last name" class="form-control "><br>
+  </div>
+  <div class="input-group" id="email"><br>
+  <span class="input-group-text" id="email">Email</span>
+  <input type="text" id="email" name="email" value="{{ email|default:'' }}"aria-label="Email" class="form-control">
+  </div>
+  <div class="input-group" id="phone"><br>
+  <span class="input-group-text" id="phone">Phone No</span>
+  <input type="text" id="phone" name="phone" value="{{ phone|default:'' }}" aria-label="Phone No" class="form-control">
+  </div>
+  <div class="input-group" id="summary"><br>
+  <span class="input-group-text" id="summary">Professional summary</span>
+  <input type="text" id="summary" name="summary" value="{{ summary|default:'' }}" aria-label="Professional summary" class="form-control">
+  </div>
+  <div class="input-group" id="skills"><br>
+  <span class="input-group-text" id="skills">Skills</span>
+  <input type="text" id="skills" name="skills" value="{{ skills|default:'' }}" aria-label="Skills" class="form-control">
+  </div>
+  <div class="input-group" id="softskills"><br>
+  <span class="input-group-text" id="skills">Soft Skills</span>
+  <input type="text" id="softSkills" name="softskills" value="{{ softskills|default:'' }}" aria-label="softSkills" class="form-control Required">
+  </div>
+  <div class="input-group" id="language"><br>
+  <span class="input-group-text" id="language">language</span>
+  <input type="text" id="language" name="language" value="{{ language|default:'' }}" aria-label="softSkills" class="form-control Required">
+  </div>
+  <label>Experience 1</label>
+  <div id="experience-section">
+  <div class="experience-item mb-3">
+    <input type="text" name="company_one"  value="{{ company_one|default:'' }}" placeholder="Company Name" class="form-control mb-2">
+  </div>
+  <div class="experience-item mb-3">
+    <input type="text" name="role_one"  value="{{ role_one|default:'' }}" placeholder="Role / Designation" class="form-control mb-2">
+  </div>
+  <div class="experience-item mb-3">
+    <textarea name="job_one"  value="{{ job_one|default:'' }}" placeholder="Job Responsibilities (one per line)" class="form-control"></textarea>
+  </div>
+</div>
+<label>Experience 2</label>
+<div id="experience-section">
+  <div class="experience-item mb-3">
+    <input type="text" name="company_two"  value="{{ company_two|default:'' }}" placeholder="Company Name" class="form-control mb-2">
+  </div>
+  <div class="experience-item mb-3">
+    <input type="text" name="role_two"  value="{{ role_two|default:'' }}" placeholder="Role / Designation" class="form-control mb-2">
+  </div>
+  <div class="experience-item mb-3">
+    <textarea name="job_two"  value="{{ job_two|default:'' }}" placeholder="Job Responsibilities (one per line)" class="form-control"></textarea>
+  </div>
+</div>
+  <div class="input-group" id="education"><br>
+  <span class="input-group-text" id="education">Education</span>
+  <input type="text" id="education" name="education" value="{{ education|default:'' }}"aria-label="Education" class="form-control">
+  </div>
+  <div class="row g-3">
+    <div class="col-md-3">
+    <label for="start_year">Start Year</label>
+    <input type="number" class="form-control" id="start_year" name="start_year" value="{{form1.start_year.value|default:''}}" placeholder="2021" min="1990" max="2035">
+    </div>
+    <div class="col-md-3">
+    <label for="end_year">End Year</label>
+    <input type="number" class="form-control" id="end_year" name="end_year" value="{{form1.end_year.value|default:''}}" placeholder="2025" min="1990" max="2035">
+    </div>
+    <div class="col-md-3">
+    <label for="cgpa">Cgpa</label>
+    <input type="text" class="form-control" id="cgpa" name="cgpa" value="{{form1.cgpa.value|default:''}}"placeholder="7.5 / 10">
+    </div>
+  </div>
+  <div class="input-group" id="address"><br>
+  <span class="input-group-text" id="address">Address</span>
+  <input type="text" id="address" name="address" value="{{ address|default:'' }}"aria-label="Address" class="form-control">
+  </div>
+  <a href="{% url 'template' %}" class="btn btn-primary"><-- Template</a>
+  <button type="submit" class="btn btn-primary">
+  {% if edit_mode %}Update Resume{% else %}Generate Resume{% endif %}
+</form>
+</center>
+</div>
+</body>    
+</html>
