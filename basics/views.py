@@ -414,14 +414,18 @@ def download_pdf1(request):
     }
 
     html = render_to_string("resume1.html", context)
-    if platform.system() == "Windows":
-        wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
-    else:
-        wkhtmltopdf_path = "/usr/bin/wkhtmltopdf"
-        config = pdfkit.configuration(wkhtmltopdf,wkhtmltopdf_path)
 
     css_path = finders.find('css/resume1.css')
-    print("CSS exists?", os.path.exists(css_path)) 
+    print("CSS exists?", os.path.exists(css_path))
+
+    if os.name == "nt":
+        config = pdfkit.configuration(
+            wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
+        )
+    else:
+        config = pdfkit.configuration(
+            wkhtmltopdf="/usr/bin/wkhtmltopdf"
+        )
 
     pdf = pdfkit.from_string(
     html,
