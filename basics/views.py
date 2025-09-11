@@ -15,6 +15,7 @@ import platform
 from django.conf import settings
 from django.templatetags.static import static
 from django.contrib.staticfiles import finders
+import shutil
 
 # Create your views here.
 @login_required(login_url='login')
@@ -352,9 +353,9 @@ def download_pdf(request):
 
     html = render_to_string("resume.html", context)
    
-    config = pdfkit.configuration(
-        wkhtmltopdf= "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
-    )
+    path_wkhtmltopdf = shutil.which("wkhtmltopdf")
+    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    
     css_path = os.path.join(settings.STATIC_ROOT, "css", "resume.css")
     pdf = pdfkit.from_string(
         html,
