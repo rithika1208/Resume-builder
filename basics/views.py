@@ -352,9 +352,14 @@ def download_pdf(request):
     }
 
     html = render_to_string("resume.html", context)
-   
-    path_wkhtmltopdf = shutil.which("wkhtmltopdf")
-    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    if os.name == "nt":
+        config = pdfkit.configuration(
+            wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
+            )
+    else:
+        config = pdfkit.configuration(
+            wkhtmltopdf="/usr/bin/wkhtmltopdf"
+            )
     
     css_path = os.path.join(settings.BASE_DIR, "static" "css", "resume.css")
 
