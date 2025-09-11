@@ -361,7 +361,7 @@ def download_pdf(request):
             wkhtmltopdf="/usr/bin/wkhtmltopdf"
             )
     
-    css_path = os.path.join(settings.BASE_DIR, "static" "css", "resume.css")
+    css_path = os.path.join(settings.BASE_DIR, "basics" "static" "css", "resume.css")
 
     pdf = pdfkit.from_string(
         html,
