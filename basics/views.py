@@ -352,16 +352,20 @@ def download_pdf(request):
     }
 
     html = render_to_string("resume.html", context)
+    
+    css_path = os.path.join(settings.BASE_DIR, 'basics', 'static', 'css', 'resume.css')
+    if not os.path.exists(css_path):
+        print("CSS file not found!", css_path)
+    
+    # Configure wkhtmltopdf depending on OS
     if os.name == "nt":
         config = pdfkit.configuration(
             wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
-            )
+        )
     else:
         config = pdfkit.configuration(
             wkhtmltopdf="/usr/bin/wkhtmltopdf"
-            )
-    
-    css_path = os.path.join(settings.BASE_DIR, "basics" "static" "css", "resume.css")
+        )
 
     pdf = pdfkit.from_string(
         html,
