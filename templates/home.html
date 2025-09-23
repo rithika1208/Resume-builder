@@ -1,3 +1,4 @@
+
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -11,6 +12,32 @@
 
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Smart Resume Builder</title>
+     <style>
+    .messages {
+      position: fixed;
+      top: 70px; /* just below navbar */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050;
+      list-style: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .messages .success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .messages .error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+    
 
    <body>
   </head>
@@ -29,13 +56,19 @@
             <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
             <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login / SignUp</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">logout</a></li>
           </ul>
         </div>
       </div>
     </nav>
-
-    
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
     <section class="hero">
       <h1>Build Your Smart Resume in Minutes</h1>
       <p class="lead">A simple, fast and professional way to create resumes</p>

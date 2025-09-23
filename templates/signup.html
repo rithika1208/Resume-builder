@@ -5,40 +5,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
-  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
   <style>
     body {
-      background-image: url("{% static 'images/home.jpg' %}");
+      background-image: url("{% static 'images/login.jpg' %}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
     }
     .messages {
-      margin: 10px auto;
-      width: 50%;
-      text-align: center;
-    }
-    .messages .success {
-      color: green;
-      font-weight: bold;
-    }
-    .messages .error {
-      color: red;
-      font-weight: bold;
-    }
+    position: fixed;   /* stays on top */
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 80%;
+    z-index: 1000;
+    list-style: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  .messages .success {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .messages .error {
+    background: #f8d7da;
+    color: #721c24;
+  }
   </style>
 </head>
 <body>
+  <!-- 🔔 Messages on top -->
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <div class="auth-container">
     <div class="auth-card">
       <h2>Sign Up</h2>
-      {% if messages %}
-        <div class="messages">
-          {% for message in messages %}
-            <p class="{{ message.tags }}">{{ message }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
       <form method="post">
         {% csrf_token %}
         <label>Username</label>

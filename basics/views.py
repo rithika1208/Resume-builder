@@ -172,7 +172,6 @@ def template(request):
 
 def signup(request):
     if request.user.is_authenticated:
-        # already logged in → directly go home
         return redirect('home')
 
     if request.method == 'POST':
@@ -194,7 +193,6 @@ def signup(request):
 
 def user_login(request):
     if request.user.is_authenticated:
-        # already logged in → directly go home
         return redirect('home')
 
     if request.method == 'POST':
@@ -212,10 +210,12 @@ def user_login(request):
 
     return render(request, 'login.html')
 
-def logout(request):
+
+def user_logout(request):
     logout(request)
     messages.success(request, "You have been logged out successfully.")
     return redirect('login')
+
 
 def resume(request):
     if request.method=="POST":

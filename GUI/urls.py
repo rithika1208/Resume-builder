@@ -23,7 +23,7 @@ from basics.views import *
 urlpatterns = [
     path('', RedirectView.as_view(url='/home/', permanent=True)), 
     path("admin/", admin.site.urls),
-    path('form/', form, name='form'),           
+    path('form/', form, name='form'),        
     path('resume/', resume, name='resume'),
     path('download/', download_pdf, name='download_pdf'),
     path('download1/', download_pdf1,  name='download_pdf1'),
@@ -31,7 +31,7 @@ urlpatterns = [
     path('home/',home, name='home'),
     path('login/',user_login,name='login'),
     path('signup/',signup,name='signup'),
-    path('logout/',logout,name='logout'),
+    path('logout/',user_logout,name='logout'),
     path('form1/',form1,name='form1'),
     path('resume1/',resume1,name='resume1'),
     path('edit_resume/<int:template_id>/', edit_resume, name="edit_resume"),
