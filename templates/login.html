@@ -1,27 +1,57 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-<style>
-  body{
-    background-image: url("{% static 'images/login.jpg' %}");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <style>
+    body {
+      background-image: url("{% static 'images/login.jpg' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .messages {
+      margin: 10px auto;
+      width: 50%;
+      text-align: center;
+    }
+    .messages .success {
+      color: green;
+      font-weight: bold;
+    }
+    .messages .error {
+      color: red;
+      font-weight: bold;
+    }
   </style>
-<div class="auth-container">
-  <div class="auth-card">
-    <h2>Login</h2>
-    <form method="post">
-      {% csrf_token %}
-      <input type="hidden" name="next" value="{{ next }}">
-      <label>Username</label>
-      <input type="text" name="username" placeholder="Enter your username" required>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter your username" required>
 
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Enter your password" required>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
 
-      <button type="submit">Login</button>
-    </form>
-    <p class="switch">New user? <a href="{% url 'signup' %}">Sign up</a></p>
+        <button type="submit">Login</button>
+      </form>
+      <p class="switch">New user? <a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
   </div>
-</div>
+</body>
+</html>

@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-!_^b4he2qm4r!l25z@7dg1m2hn!^22)!yt_3ee7j*)i)-5pj)=
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['resume-builder-1-k4zb.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 
@@ -138,9 +138,8 @@ if os.name == "nt":  # Windows
 
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/form/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
